@@ -1,7 +1,7 @@
 ---
 title: 'Activity: Popular Names'
-author: "YOUR NAME HERE"
-date: "DUE DATE"
+author: "Willem Krantz"
+date: "06/21/23"
 output:
   html_document:
     df_print: paged
@@ -35,9 +35,15 @@ library(tidyverse)
 library(mosaic)
 library(esquisse)
 
+#install.packages("devtools")
+#devtools::install_github("mdbeckman/dcData")
+library(dcData)
+library(dbplyr)
+library(stringr)
+
 
 # Load the BabyNames data into RStudio environment (from dcData package)
-data("BabyNames", package = "dcData")
+data("BabyNames", package = "dcData") 
 ```
 
 # Activity
@@ -55,6 +61,21 @@ My answer here....
 
 ```{r}
 ## Look at the data a few different ways (see Ch 9 for more).
+BabyNames%>%
+  group_by(name,year)%>%
+  summarise(count=n())
+  
+BabyNames%>%
+  group_by(name,sex)%>%
+  summarise(count=n())
+
+BabyNames%>%
+  filter(name %in% c("John", "James", "Sofia", "Ava", "Emily"))%>%
+  group_by(name,year)%>%
+    summarise(count=sum(count, na.rm = TRUE))
+
+  
+
 
 
 ```
@@ -97,6 +118,17 @@ My answer here....
 
 Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).  
 
+```{r}
+BabyGlyph<-BabyNames%>%
+  filter(name %in% c("John", "James", "Sofia", "Ava", "Emily"))%>%
+  group_by(name,year)%>%
+    summarise(total=sum(count, na.rm=TRUE))
+
+
+```
+
+
+
 
 ### Step 6
 
@@ -106,7 +138,12 @@ Using the BabyNames data set, filter the data to display just the 5 names that y
 
 ```{r}
 ## Create my glyph ready data set here
-
+BabyGlyph %>%
+  ggplot(aes(x = year, y = total, group = name)) + 
+  geom_line(size = 1, alpha = 0.5, aes(color = name)) + 
+  ylab("Popularity") + 
+  xlab("Year") +
+  ggtitle("Popularity of Names Over Time")
 
 # inspect the result
 

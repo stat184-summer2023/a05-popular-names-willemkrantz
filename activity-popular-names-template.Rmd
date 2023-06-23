@@ -82,36 +82,33 @@ BabyNames%>%
 
 ### Step 2
 
-[This should be done by hand on paper, nothing to show in the HTML doc]
 
+It will look like a graph with moving lines similar to the example 
 
 ### Step 3 
 
 ##### What variable(s) from the raw data table do not appear at all in the graph?
 
-My answer here.... 
+I have removed sex from the equation as it is irrelevant and I simply want the counts of each name regardless of sex.
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
-
-My answer here.... 
-
+Count is no longer total count but the count of name total per year. 
 
 ### Step 4
 
 ##### Have cases been filtered out?
 
-My answer here.... 
+I removed all names I was uninterested in with the filter function.  
 
 
 ##### Have cases been grouped and summarized within groups in any way?
 
-My answer here.... 
+ The cases have been grouped by name count in each year. That way graphically we can see how name use rises and falls through out time. 
 
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
-My answer here.... 
-
+No new variables have been added to my data.
 
 ### Step 5
 
@@ -132,7 +129,7 @@ BabyGlyph<-BabyNames%>%
 
 ### Step 6
 
-[This should be done by hand on paper, nothing to show in the HTML doc]
+
 
 ### Step 7
 
